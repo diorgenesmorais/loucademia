@@ -2,5 +2,5 @@
 .metadata/
 .project
 .settings/
-WebContent/
+WebContent/WEB-INF/lib/
 build/
