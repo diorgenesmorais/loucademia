@@ -1,0 +1,102 @@
+<!-- Cabeçalho - início -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Loucademia</title>
+</head>
+<body>
+	<header>
+		<img src="images/Loucademia_Logotipo.png">
+		<nav>
+			<div>
+				<a href="novoAluno.html">Novo aluno</a><br>
+				<a href="pesquisaDeAluno.html">Pesquisa de aluno</a><br>
+				<a href="controleDeAcesso.html">Controle de acesso</a><br>
+				<a href="relatoriosDeEntradSaida.html">Relatórios de entrada e saída</a><br>
+				<a href="relatoriosDeSituacoes.html">Relatórios de situações</a><br>
+			</div>
+		</nav>
+	</header>
+	<!-- Cabeçalho - fim -->
+	<h1>Pesuisa de aluno</h1>
+	<div id="infoMessage">
+		(Aqui vai eventual mensagem de sistema confirmando sucesso ou error)
+	</div>
+	
+	<form action="">
+		<fieldset>
+			<legend>Parâmetros de pesquisa</legend>
+			<label for="id">ID</label><br>
+			<input type="text" name="id" id="id"><br>
+			<label for="nome">Nome</label><br>
+			<input type="text" name="nome" id="nome"><br>
+			<label for="rg">RG</label><br>
+			<input type="text" name="rg" id="rg"><br>
+			<label for="telefoneDDD">Telefone</label><br>
+			<input type="tel" name="telefoneDDD" id="telefoneDDD">
+			<input type="tel" name="telefoneNumero" id="telefoneNumero">
+		</fieldset>
+		<br>
+		<button type="submit">Pesquisar</button>
+	</form>
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Nome</th>
+				<th>RG</th>
+				<th>E-mail</th>
+				<th>Situação</th>
+				<th>Ações</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>1</td>
+				<td>Diorgenes Morais</td>
+				<td>3.888.999</td>
+				<td>diorgenesmorais@gmail.comm</td>
+				<td>Ativo</td>
+				<td>
+					<button>Editar</button>
+					<button>Excluir</button>
+				</td>
+			</tr>
+			<tr>
+				<td>2</td>
+				<td>Junior</td>
+				<td>4.777.666</td>
+				<td>diorgenesmorais.dm@gmail.com</td>
+				<td>Ativo</td>
+				<td>
+					<button>Editar</button>
+					<button>Excluir</button>
+				</td>
+			</tr>
+			<tr>
+				<td>3</td>
+				<td>Dayane</td>
+				<td>5.333.222</td>
+				<td>dayanemorais@gmail.comm</td>
+				<td>Inativo</td>
+				<td>
+					<button>Editar</button>
+					<button>Excluir</button>
+				</td>
+			</tr>
+			<tr>
+				<td>4</td>
+				<td>Deyvison</td>
+				<td>6.999.888</td>
+				<td>deyvisonmorais@gmail.com</td>
+				<td>Ativo</td>
+				<td>
+					<button>Editar</button>
+					<button>Excluir</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
