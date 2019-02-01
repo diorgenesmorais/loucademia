@@ -1,4 +1,4 @@
-package com.dms.loucademia;
+package com.dms.loucademia.application.config;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.annotation.FacesConfig;
