@@ -1,8 +1,19 @@
 package com.dms.loucademia.domain.aluno;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+// TODO implementar a interface Serializable
+@Entity
+@Table(name = "estado")
 public class Estado {
 
+	@Id
+	@Column(length = 2)
 	private String sigla;
+	@Column(nullable = false, length = 30)
 	private String nome;
 
 	public String getSigla() {
