@@ -1,8 +1,20 @@
 package com.dms.loucademia.domain.aluno;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Aluno {
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "aluno")
+public class Aluno implements Serializable {
+
+	private static final long serialVersionUID = 5545568297163087561L;
 
 	enum Sexo {
 		Masculino, Feminino
@@ -12,14 +24,26 @@ public class Aluno {
 		Ativo, Inativo, Pendente
 	}
 
+	@Id
+	@Column(name = "id", length = 8)
 	private String matricula;
+	@Column(nullable = false, length = 64)
 	private String nome;
+	@Enumerated
+	@Column(nullable = false)
 	private Sexo sexo;
+	@Column(nullable = false)
 	private Integer rg;
+	@Column(name = "nascimento")
 	private LocalDate dataNascimento;
+	@Enumerated
+	@Column(nullable = false)
 	private Situacao situacao;
+	@Column(length = 64)
 	private String email;
+	@Embedded
 	private Endereco endereco = new Endereco();
+	@Embedded
 	private Telefone telefone = new Telefone();
 
 	public String getMatricula() {

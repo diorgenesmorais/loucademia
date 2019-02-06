@@ -2,12 +2,28 @@ package com.dms.loucademia.domain.acesso;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 import com.dms.loucademia.domain.aluno.Aluno;
 
+@Entity
+@Table(name = "entradas_saidas")
 public class Acesso {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@ManyToOne
+	@JoinColumn(name = "aluno_id", nullable = false)
 	private Aluno aluno;
+	@Column(nullable = false)
 	private LocalDateTime entrada;
 	private LocalDateTime saida;
 

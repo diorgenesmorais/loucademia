@@ -1,12 +1,24 @@
 package com.dms.loucademia.domain.aluno;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Embeddable
 public class Endereco {
 
+	@Column(nullable = false, length = 128)
 	private String rua;
 	private Integer numero;
+	@Column(length = 32)
 	private String complemento;
+	@Column(nullable = false, length = 64)
 	private String cidade;
+	@ManyToOne
+	@JoinColumn(name = "estado_id", nullable = false)
 	private Estado estado = new Estado();
+	@Column(nullable = false)
 	private Integer cep;
 
 	public String getRua() {

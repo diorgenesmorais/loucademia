@@ -1,10 +1,18 @@
 package com.dms.loucademia.domain.aluno;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class Telefone {
 
+	@Column(name = "celular_ddd", length = 2)
 	private Integer dddCelular;
+	@Column(name = "celular_numero", length = 9)
 	private Integer numeroCelular;
+	@Column(name = "fixo_ddd", length = 2)
 	private Integer dddFixo;
+	@Column(name = "fixo_numero", length = 9)
 	private Integer numeroFixo;
 
 	public Integer getDddCelular() {
