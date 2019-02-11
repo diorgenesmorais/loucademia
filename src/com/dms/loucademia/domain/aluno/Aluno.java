@@ -16,11 +16,11 @@ public class Aluno implements Serializable {
 
 	private static final long serialVersionUID = 5545568297163087561L;
 
-	enum Sexo {
+	public enum Sexo {
 		Masculino, Feminino
 	}
 
-	enum Situacao {
+	public enum Situacao {
 		Ativo, Inativo, Pendente
 	}
 
