@@ -22,4 +22,8 @@ public class AlunoBean implements Serializable {
 		this.aluno = aluno;
 	}
 
+	public String gravar() {
+		System.err.println("Aluno >>> " + aluno);
+		return null;
+	}
 }
