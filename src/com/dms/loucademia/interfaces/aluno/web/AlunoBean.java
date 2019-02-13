@@ -1,4 +1,4 @@
-package com.dms.loucademia.interfaces.web;
+package com.dms.loucademia.interfaces.aluno.web;
 
 import java.io.Serializable;
 

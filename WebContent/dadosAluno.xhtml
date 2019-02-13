@@ -51,7 +51,7 @@
 				<label for="cidade">Cidade</label><br />
 				<input type="text" jsf:value="#{alunoBean.aluno.endereco.cidade}" id="cidade" /><br />
 				<label for="estado">Estado</label><br />
-				<select jsf:value="#{alunoBean.aluno.endereco.estado.sigla}" id="estado">
+				<select jsf:value="#{alunoBean.aluno.endereco.estado.sigla}" id="estado" size="0">
 					<f:selectItems value="#{dataBean.estados}" var="e" itemLabel="#{e.nome}" itemValue="#{e.sigla}" />
 				</select><br />
 				<label for="cep">CEP</label><br />
