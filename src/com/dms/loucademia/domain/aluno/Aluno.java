@@ -54,6 +54,10 @@ public class Aluno implements Serializable {
 		this.matricula = matricula;
 	}
 
+	public void gerarMatricula() {
+		//TODO: Colocar lógica aqui
+		this.matricula = "00000001";
+	}
 	public String getNome() {
 		return nome;
 	}
