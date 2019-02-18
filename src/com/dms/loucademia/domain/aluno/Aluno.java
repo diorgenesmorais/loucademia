@@ -2,6 +2,7 @@ package com.dms.loucademia.domain.aluno;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.Year;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -9,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.dms.loucademia.application.util.StringUtils;
 
 @Entity
 @Table(name = "aluno")
@@ -54,10 +57,19 @@ public class Aluno implements Serializable {
 		this.matricula = matricula;
 	}
 
-	public void gerarMatricula() {
-		//TODO: Colocar lógica aqui
-		this.matricula = "00000001";
+	public void gerarMatricula(String maxMatricula) {
+		Year year = Year.now();
+
+		if (StringUtils.isEmpty(maxMatricula)) {
+			maxMatricula = year + StringUtils.leftZeroes(0, 4);
+		}
+
+		int sequential = Integer.parseInt(maxMatricula.substring(4));
+		sequential++;
+
+		this.matricula = year + StringUtils.leftZeroes(sequential, 4);
 	}
+
 	public String getNome() {
 		return nome;
 	}
