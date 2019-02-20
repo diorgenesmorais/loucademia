@@ -7,6 +7,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 import com.dms.loucademia.application.service.AlunoService;
+import com.dms.loucademia.application.util.StringUtils;
 import com.dms.loucademia.domain.aluno.Aluno;
 
 @Named
@@ -14,10 +15,12 @@ import com.dms.loucademia.domain.aluno.Aluno;
 public class AlunoBean implements Serializable {
 
 	private static final long serialVersionUID = 958319261516788915L;
-	
+
 	@EJB
 	private AlunoService alunoService;
 	private Aluno aluno = new Aluno();
+	private String matricula;
+	private String titulo = "Novo aluno";
 
 	public Aluno getAluno() {
 		return aluno;
@@ -29,6 +32,28 @@ public class AlunoBean implements Serializable {
 
 	public String gravar() {
 		alunoService.createOrUpdate(aluno);
+		
+		this.aluno = null;
 		return null;
 	}
+
+	public String getMatricula() {
+		return matricula;
+	}
+
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
+
+	public void carregar() {
+		if(!StringUtils.isEmpty(matricula)) {
+			this.aluno = this.alunoService.findByMatricula(matricula);
+			this.titulo = "Alterar aluno";
+		}
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+	
 }
