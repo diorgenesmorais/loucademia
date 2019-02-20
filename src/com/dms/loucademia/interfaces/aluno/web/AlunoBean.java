@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.dms.loucademia.application.service.AlunoService;
@@ -21,6 +24,8 @@ public class AlunoBean implements Serializable {
 	private Aluno aluno = new Aluno();
 	private String matricula;
 	private String titulo = "Novo aluno";
+	@Inject
+	private FacesContext facesContext;
 
 	public Aluno getAluno() {
 		return aluno;
@@ -32,8 +37,7 @@ public class AlunoBean implements Serializable {
 
 	public String gravar() {
 		alunoService.createOrUpdate(aluno);
-		
-		this.aluno = null;
+		facesContext.addMessage(null, new FacesMessage("Dados gravados com sucesso!"));
 		return null;
 	}
 
@@ -48,6 +52,8 @@ public class AlunoBean implements Serializable {
 	public void carregar() {
 		if(!StringUtils.isEmpty(matricula)) {
 			this.aluno = this.alunoService.findByMatricula(matricula);
+		}
+		if(!StringUtils.isEmpty(this.aluno.getMatricula())) {
 			this.titulo = "Alterar aluno";
 		}
 	}

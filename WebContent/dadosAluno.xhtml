@@ -15,9 +15,11 @@
 	<ui:define name="conteudo">
 		<h1>#{alunoBean.titulo}</h1>
 		
-		<div id="infoMessage">
-			(Aqui vai eventual mensagem de sistema confirmando sucesso ou error)
-		</div>
+		<h:panelGroup rendered="#{!facesContext.messageList.isEmpty()}">
+			<div id="infoMessage">
+				<h:messages />
+			</div>
+		</h:panelGroup>
 		<br />
 		<form jsf:id="form">
 			<input type="hidden" jsf:value="#{alunoBean.aluno.matricula}" />
