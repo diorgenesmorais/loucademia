@@ -21,23 +21,23 @@
 	<form action="" jsf:id="form">
 		<fieldset>
 			<legend>Parâmetros de pesquisa</legend>
-			<label for="id">ID</label><br />
+			<label for="id">Matricula</label><br />
 			<input type="text" name="id" id="id" /><br />
 			<label for="nome">Nome</label><br />
 			<input type="text" name="nome" id="nome" /><br />
 			<label for="rg">RG</label><br />
 			<input type="text" name="rg" id="rg" /><br />
-			<label for="telefoneDDD">Telefone</label><br />
-			<input type="tel" name="telefoneDDD" id="telefoneDDD" />
+			<label for="telefoneNumero">Telefone</label><br />
 			<input type="tel" name="telefoneNumero" id="telefoneNumero" />
 		</fieldset>
 		<br />
-		<button type="submit">Pesquisar</button>
+		<button type="submit" jsf:action="#{pesquisaAlunoBean.pesquisar}">Pesquisar</button>
 	</form>
-	<table>
+	<h:panelGroup rendered="#{not empty pesquisaAlunoBean.alunos}">
+		<table>
 		<thead>
 			<tr>
-				<th>ID</th>
+				<th>Matrícula</th>
 				<th>Nome</th>
 				<th>RG</th>
 				<th>E-mail</th>
@@ -57,41 +57,9 @@
 					<button>Excluir</button>
 				</td>
 			</tr>
-			<tr>
-				<td>2</td>
-				<td>Junior</td>
-				<td>4.777.666</td>
-				<td>diorgenesmorais.dm@gmail.com</td>
-				<td>Ativo</td>
-				<td>
-					<button>Editar</button>
-					<button>Excluir</button>
-				</td>
-			</tr>
-			<tr>
-				<td>3</td>
-				<td>Dayane</td>
-				<td>5.333.222</td>
-				<td>dayanemorais@gmail.comm</td>
-				<td>Inativo</td>
-				<td>
-					<button>Editar</button>
-					<button>Excluir</button>
-				</td>
-			</tr>
-			<tr>
-				<td>4</td>
-				<td>Deyvison</td>
-				<td>6.999.888</td>
-				<td>deyvisonmorais@gmail.com</td>
-				<td>Ativo</td>
-				<td>
-					<button>Editar</button>
-					<button>Excluir</button>
-				</td>
-			</tr>
 		</tbody>
 	</table>
+	</h:panelGroup>
 	</ui:define>
 	</ui:composition>
 </html>
