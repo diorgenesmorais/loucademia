@@ -45,4 +45,8 @@ public class AlunoService {
 	public List<Aluno> listAluno(String matricula) {
 		return Arrays.asList(this.findByMatricula(matricula));
 	}
+
+	public void delete(String matricula) {
+		this.alunoRepository.delete(matricula);
+	}
 }

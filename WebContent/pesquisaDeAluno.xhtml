@@ -14,52 +14,57 @@
 	</f:metadata>
 	<ui:define name="conteudo">
 	<h1>Pesquisa de aluno</h1>
-	<div id="infoMessage">
-		(Aqui vai eventual mensagem de sistema confirmando sucesso ou error)
-	</div>
+	<h:panelGroup rendered="#{!facesContext.messageList.isEmpty()}">
+		<div id="infoMessage">
+			<h:messages />
+		</div>
+	</h:panelGroup>
 	
 	<form action="" jsf:id="form">
 		<fieldset>
 			<legend>Parâmetros de pesquisa</legend>
 			<label for="id">Matricula</label><br />
-			<input type="text" name="id" id="id" /><br />
+			<input type="text" name="id" id="id" jsf:value="#{pesquisaAlunoBean.matricula}" /><br />
 			<label for="nome">Nome</label><br />
-			<input type="text" name="nome" id="nome" /><br />
+			<input type="text" name="nome" id="nome" jsf:value="#{pesquisaAlunoBean.nome}" /><br />
 			<label for="rg">RG</label><br />
-			<input type="text" name="rg" id="rg" /><br />
+			<input type="text" name="rg" id="rg" jsf:value="#{pesquisaAlunoBean.rg}" /><br />
 			<label for="telefoneNumero">Telefone</label><br />
-			<input type="tel" name="telefoneNumero" id="telefoneNumero" />
+			<input type="tel" name="telefoneNumero" id="telefoneNumero" jsf:value="#{pesquisaAlunoBean.telefone}" />
 		</fieldset>
 		<br />
 		<button type="submit" jsf:action="#{pesquisaAlunoBean.pesquisar}">Pesquisar</button>
+	
+		<h:panelGroup rendered="#{not empty pesquisaAlunoBean.alunos}">
+			<table>
+				<thead>
+					<tr>
+						<th>Matrícula</th>
+						<th>Nome</th>
+						<th>RG</th>
+						<th>E-mail</th>
+						<th>Situação</th>
+						<th>Ações</th>
+					</tr>
+				</thead>
+				<tbody>
+					<ui:repeat var="a" value="#{pesquisaAlunoBean.alunos}">
+						<tr>
+						<td>#{a.matricula}</td>
+						<td>#{a.nome}</td>
+						<td>#{a.rg}</td>
+						<td>#{a.email}</td>
+						<td>#{a.situacao}</td>
+						<td>
+							<button jsf:outcome="dadosAluno?matricula=#{a.matricula}">Editar</button>&#160;
+							<button type="submit" onclick="return confirm('Deseja excluir o aluno #{a.matricula}');" jsf:action="#{pesquisaAlunoBean.excluir(a.matricula)}">Excluir</button>
+						</td>
+					</tr>
+					</ui:repeat>
+				</tbody>
+			</table>
+		</h:panelGroup>
 	</form>
-	<h:panelGroup rendered="#{not empty pesquisaAlunoBean.alunos}">
-		<table>
-		<thead>
-			<tr>
-				<th>Matrícula</th>
-				<th>Nome</th>
-				<th>RG</th>
-				<th>E-mail</th>
-				<th>Situação</th>
-				<th>Ações</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>1</td>
-				<td>Diorgenes Morais</td>
-				<td>3.888.999</td>
-				<td>diorgenesmorais@gmail.comm</td>
-				<td>Ativo</td>
-				<td>
-					<button>Editar</button>
-					<button>Excluir</button>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-	</h:panelGroup>
 	</ui:define>
 	</ui:composition>
 </html>

@@ -1,13 +1,20 @@
 package com.dms.loucademia.interfaces.aluno.web;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 
 import com.dms.loucademia.application.service.AlunoService;
 import com.dms.loucademia.domain.aluno.Aluno;
 
-public class PesquisaAlunoBean {
+@Named
+@SessionScoped
+public class PesquisaAlunoBean implements Serializable {
+
+	private static final long serialVersionUID = -9152995216634301135L;
 
 	@EJB
 	private AlunoService alunoService;
@@ -55,7 +62,12 @@ public class PesquisaAlunoBean {
 	}
 
 	public String pesquisar() {
-		this.alunos = alunoService.listAluno(matricula);
-		return "";
+		alunos = alunoService.listAluno(this.matricula);
+		return null;
+	}
+	
+	public String excluir(String matricula) {
+		alunoService.delete(matricula);
+		return pesquisar();
 	}
 }
