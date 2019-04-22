@@ -1,6 +1,5 @@
 package com.dms.loucademia.application.service;
 
-import java.util.Arrays;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -8,6 +7,7 @@ import javax.ejb.Stateless;
 
 import com.dms.loucademia.application.util.StringUtils;
 import com.dms.loucademia.application.util.Validation;
+import com.dms.loucademia.application.util.ValidationException;
 import com.dms.loucademia.domain.aluno.Aluno;
 import com.dms.loucademia.domain.aluno.AlunoRepository;
 
@@ -42,8 +42,12 @@ public class AlunoService {
 		return alunoRepository.findById(matricula);
 	}
 
-	public List<Aluno> listAluno(String matricula) {
-		return Arrays.asList(this.findByMatricula(matricula));
+	public List<Aluno> listAluno(String matricula, String nome, Integer rg, Integer telefone) {
+		if (StringUtils.isEmpty(matricula) && StringUtils.isEmpty(nome) && rg == null && telefone == null) {
+			throw new ValidationException("Pelo menos um critério de pesquisa deve ser fornecido");
+		}
+
+		return alunoRepository.listAlunos(matricula, nome, rg, telefone);
 	}
 
 	public void delete(String matricula) {

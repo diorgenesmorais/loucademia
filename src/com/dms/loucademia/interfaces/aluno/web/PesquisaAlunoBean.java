@@ -5,9 +5,13 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.dms.loucademia.application.service.AlunoService;
+import com.dms.loucademia.application.util.ValidationException;
 import com.dms.loucademia.domain.aluno.Aluno;
 
 @Named
@@ -18,6 +22,9 @@ public class PesquisaAlunoBean implements Serializable {
 
 	@EJB
 	private AlunoService alunoService;
+
+	@Inject
+	private FacesContext facesContext;
 
 	private String matricula;
 	private String nome;
@@ -62,10 +69,14 @@ public class PesquisaAlunoBean implements Serializable {
 	}
 
 	public String pesquisar() {
-		alunos = alunoService.listAluno(this.matricula);
+		try {
+			alunos = alunoService.listAluno(this.matricula, this.nome, this.rg, this.telefone);
+		} catch (ValidationException e) {
+			facesContext.addMessage(null, new FacesMessage(e.getMessage()));
+		}
 		return null;
 	}
-	
+
 	public String excluir(String matricula) {
 		alunoService.delete(matricula);
 		return pesquisar();

@@ -29,4 +29,8 @@ public class DataBean {
 	public List<Estado> getEstados() {
 		return dataService.listarEstados();
 	}
+
+	public String formatTelefone(Integer ddd, Integer numero) {
+		return (ddd == null || numero == null) ? "" : String.format("(%d) %d", ddd, numero);
+	}
 }

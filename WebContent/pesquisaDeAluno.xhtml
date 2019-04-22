@@ -43,6 +43,7 @@
 						<th>Nome</th>
 						<th>RG</th>
 						<th>E-mail</th>
+						<th>Telefone</th>
 						<th>Situação</th>
 						<th>Ações</th>
 					</tr>
@@ -54,6 +55,10 @@
 						<td>#{a.nome}</td>
 						<td>#{a.rg}</td>
 						<td>#{a.email}</td>
+						<td>
+							<h:panelGroup rendered="#{not empty a.telefone.numeroCelular}">#{dataBean.formatTelefone(a.telefone.dddCelular, a.telefone.numeroCelular)}<br /></h:panelGroup>
+							<h:panelGroup rendered="#{not empty a.telefone.numeroFixo}">#{dataBean.formatTelefone(a.telefone.dddFixo, a.telefone.numeroFixo)}</h:panelGroup>
+						</td>
 						<td>#{a.situacao}</td>
 						<td>
 							<button jsf:outcome="dadosAluno?matricula=#{a.matricula}">Editar</button>&#160;
