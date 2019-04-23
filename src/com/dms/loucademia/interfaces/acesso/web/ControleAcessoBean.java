@@ -46,14 +46,18 @@ public class ControleAcessoBean implements Serializable {
 		try {
 			tipoAcesso = this.acessoService.registrarAcesso(matricula, rg);
 		} catch (ValidationException e) {
-			this.facesContext.addMessage(null, new FacesMessage(e.getMessage()));
+			informarMensagem(e.getMessage());
 			return null;
 		}
 
 		String message = tipoAcesso.obterMensagem();
 
-		this.facesContext.addMessage(null, new FacesMessage(message));
+		informarMensagem(message);
 
 		return null;
+	}
+
+	private void informarMensagem(String message) {
+		this.facesContext.addMessage(null, new FacesMessage(message));
 	}
 }

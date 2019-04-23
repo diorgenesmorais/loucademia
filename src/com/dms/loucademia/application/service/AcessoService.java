@@ -5,6 +5,7 @@ import javax.ejb.Stateless;
 
 import com.dms.loucademia.application.util.StringUtils;
 import com.dms.loucademia.application.util.ValidationException;
+import com.dms.loucademia.domain.acesso.Acesso;
 import com.dms.loucademia.domain.acesso.AcessoRepository;
 import com.dms.loucademia.domain.acesso.TipoAcesso;
 import com.dms.loucademia.domain.aluno.Aluno;
@@ -34,6 +35,18 @@ public class AcessoService {
 			throw new ValidationException("O aluno não foi encontrado");
 		}
 
-		return null;
+		Acesso acesso = acessoRepository.findUltimoAcesso(aluno);
+		TipoAcesso tipoAcesso;
+		
+		if(acesso == null || acesso.isEntradaSaidaPreenchidas()) {
+			acesso = new Acesso();
+			acesso.setAluno(aluno);
+			tipoAcesso = acesso.registrarAcesso();
+			acessoRepository.store(acesso);
+		} else {
+			tipoAcesso = acesso.registrarAcesso();
+		}
+
+		return tipoAcesso;
 	}
 }

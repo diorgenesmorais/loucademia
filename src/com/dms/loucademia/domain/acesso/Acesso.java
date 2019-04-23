@@ -89,4 +89,22 @@ public class Acesso {
 		return true;
 	}
 
+	public boolean isEntradaSaidaPreenchidas() {
+		return (this.entrada != null && this.saida != null);
+	}
+
+	public TipoAcesso registrarAcesso() {
+		// TODO: posso ter problemas se o retorno do tipoAcesso for null
+		TipoAcesso tipoAcesso = null;
+
+		if (this.entrada == null) {
+			this.entrada = LocalDateTime.now();
+			tipoAcesso = TipoAcesso.ENTRADA;
+		} else if (this.saida == null) {
+			this.saida = LocalDateTime.now();
+			tipoAcesso = TipoAcesso.SAIDA;
+		}
+
+		return tipoAcesso;
+	}
 }
