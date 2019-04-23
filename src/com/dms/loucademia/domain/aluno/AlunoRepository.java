@@ -20,8 +20,20 @@ public class AlunoRepository {
 		em.persist(t);
 	}
 
+	/**
+	 * Find by matricula
+	 * 
+	 * @param id é a representação de matricula no modelo.
+	 * @return um {@code Aluno}
+	 */
 	public Aluno findById(String id) {
 		return em.find(Aluno.class, id);
+	}
+
+	public Aluno findByRG(Integer rg) {
+		return em.createQuery("select a from Aluno where a.rg = :rg", Aluno.class)
+				.setParameter("rg", rg)
+				.getSingleResult();
 	}
 
 	public Aluno update(Aluno t) {
@@ -41,41 +53,41 @@ public class AlunoRepository {
 				.setParameter("ano", Year.now() + "%").getSingleResult();
 	}
 
-	public List<Aluno> listAlunos(String matricula, String nome, Integer rg, Integer telefone){
+	public List<Aluno> listAlunos(String matricula, String nome, Integer rg, Integer telefone) {
 		StringBuilder jpql = new StringBuilder("select a from Aluno a where ");
-		
-		if(!StringUtils.isEmpty(matricula)) {
+
+		if (!StringUtils.isEmpty(matricula)) {
 			jpql.append("a.matricula = :matricula and ");
 		}
-		
-		if(!StringUtils.isEmpty(nome)) {
+
+		if (!StringUtils.isEmpty(nome)) {
 			jpql.append("a.nome like :nome and ");
 		}
-		
-		if(rg != null) {
+
+		if (rg != null) {
 			jpql.append("a.rg = :rg and ");
 		}
-		
-		if(telefone != null) {
+
+		if (telefone != null) {
 			jpql.append("(a.telefone.numeroCelular like :celular or a.telefone.numeroFixo like :fixo) and ");
 		}
-		
+
 		jpql.append("1 = 1");
 		TypedQuery<Aluno> query = em.createQuery(jpql.toString(), Aluno.class);
-		
-		if(!StringUtils.isEmpty(matricula)) {
+
+		if (!StringUtils.isEmpty(matricula)) {
 			query.setParameter("matricula", matricula);
 		}
-		
-		if(!StringUtils.isEmpty(nome)) {
+
+		if (!StringUtils.isEmpty(nome)) {
 			query.setParameter("nome", String.format("%%%s%%", nome));
 		}
-		
-		if(rg != null) {
+
+		if (rg != null) {
 			query.setParameter("rg", rg);
 		}
-		
-		if(telefone != null) {
+
+		if (telefone != null) {
 			query.setParameter("celular", telefone);
 			query.setParameter("fixo", telefone);
 		}
