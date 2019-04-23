@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import com.dms.loucademia.application.util.StringUtils;
+import com.dms.loucademia.domain.aluno.Aluno.Situacao;
 
 @Stateless
 public class AlunoRepository {
@@ -97,5 +98,11 @@ public class AlunoRepository {
 			query.setParameter("fixo", telefone);
 		}
 		return query.getResultList();
+	}
+	
+	public List<Aluno> listSituacoesAlunos(Situacao situcao){
+		return em.createQuery("select a from Aluno a where a.situacao = :situacao order by a.nome", Aluno.class)
+				.setParameter("situacao", situcao)
+				.getResultList();
 	}
 }
