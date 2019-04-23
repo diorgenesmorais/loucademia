@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.dms.loucademia.application.util.Validation;
 import com.dms.loucademia.domain.aluno.Aluno;
 
 @Entity
@@ -94,7 +95,6 @@ public class Acesso {
 	}
 
 	public TipoAcesso registrarAcesso() {
-		// TODO: posso ter problemas se o retorno do tipoAcesso for null
 		TipoAcesso tipoAcesso = null;
 
 		if (this.entrada == null) {
@@ -105,6 +105,7 @@ public class Acesso {
 			tipoAcesso = TipoAcesso.SAIDA;
 		}
 
+		Validation.assertNotEmpty(tipoAcesso);
 		return tipoAcesso;
 	}
 }
