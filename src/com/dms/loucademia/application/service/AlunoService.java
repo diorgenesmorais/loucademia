@@ -57,6 +57,6 @@ public class AlunoService {
 	
 	public List<Aluno> listSituacoesAlunos(Situacao situacao){
 		Validation.assertNotEmpty(situacao);
-		return alunoRepository.listSituacoesAlunos(situcao);
+		return alunoRepository.listSituacoesAlunos(situacao);
 	}
 }
