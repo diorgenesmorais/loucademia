@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	lang="pt-BR">
+
+<ui:composition template="layout.xhtml">
+	<ui:define name="conteudo">
+	<h1>Relatório de entradas e saídas</h1>
+	<h:panelGroup rendered="#{!facesContext.messageList.isEmpty()}">
+		<div id="infoMessage">
+			<h:messages />
+		</div>
+	</h:panelGroup>
+	<form jsf:id="form">
+		<!-- resb = relatorioEntradaSaidaBean -->
+		<fieldset>
+			<legend>Parâmetros de entradas e saídas</legend>
+			<label for="id">Matricula</label><br />
+			<input type="text" jsf:value="#{resb.matricula}" id="id" /><br />
+			<label for="dataInicial">Data inicial</label><br />
+			<input type="date" jsf:value="#{resb.dataInicial}" id="dataInicial">
+				<f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
+			</input>
+			<br />
+			<label for="dataFinal">Data final</label><br />
+			<input type="date" jsf:value="#{resb.dataFinal}" id="dataFinal" >
+				<f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
+			</input>
+		</fieldset>
+		<br />
+		<button type="submit" jsf:action="#{resb.gerarRelatorio}" >Gerar relatório</button>
+	</form>
+	<table>
+		<thead>
+			<tr>
+				<th>Matricula</th>
+				<th>Nome</th>
+				<th>Entrada</th>
+				<th>Saída</th>
+				<th>Duração</th>
+			</tr>
+		</thead>
+		<tbody>
+			<ui:repeat var="a" value="#{resb.acessos}">
+				<tr>
+					<td>#{a.acesso.id}</td>
+					<td>#{a.acesso.aluno.nome}</td>
+					<td>03/01/2019 09:15:14</td>
+					<td>03/01/2019 10:05:14</td>
+					<td>00:50:00</td>
+				</tr>
+			</ui:repeat>
+		</tbody>
+	</table>
+</ui:define>
+</ui:composition>
+</html>
