@@ -1,5 +1,6 @@
 package com.dms.loucademia.domain.acesso;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -107,5 +108,15 @@ public class Acesso {
 
 		Validation.assertNotEmpty(tipoAcesso);
 		return tipoAcesso;
+	}
+
+	public String getCalculoDeDuracao() {
+		if (entrada == null || saida == null) {
+			return null;
+		}
+
+		Duration duration = Duration.between(entrada, saida);
+
+		return String.format("%02d:%02d:%02d", duration.toHours(), duration.toMinutesPart(), duration.toSecondsPart());
 	}
 }

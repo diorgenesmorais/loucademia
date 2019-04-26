@@ -1,5 +1,8 @@
 package com.dms.loucademia.application.service;
 
+import java.time.LocalDate;
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -48,5 +51,13 @@ public class AcessoService {
 		}
 
 		return tipoAcesso;
+	}
+
+	public List<Acesso> listAcessosAlunos(String matricula, LocalDate dataInicial, LocalDate dataFinal){
+		if (StringUtils.isEmpty(matricula) && dataInicial == null && dataFinal == null) {
+			throw new ValidationException("Pelo menos um critério de pesquisa deve ser fornecido");
+		}
+
+		return acessoRepository.listAcessosAlunos(matricula, dataInicial, dataFinal);
 	}
 }

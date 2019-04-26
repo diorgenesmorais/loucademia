@@ -34,28 +34,38 @@
 		<br />
 		<button type="submit" jsf:action="#{resb.gerarRelatorio}" >Gerar relatório</button>
 	</form>
-	<table>
-		<thead>
-			<tr>
-				<th>Matricula</th>
-				<th>Nome</th>
-				<th>Entrada</th>
-				<th>Saída</th>
-				<th>Duração</th>
-			</tr>
-		</thead>
-		<tbody>
-			<ui:repeat var="a" value="#{resb.acessos}">
+	<h:panelGroup rendered="#{not empty resb.acessos}">
+		<table>
+			<thead>
 				<tr>
-					<td>#{a.acesso.id}</td>
-					<td>#{a.acesso.aluno.nome}</td>
-					<td>03/01/2019 09:15:14</td>
-					<td>03/01/2019 10:05:14</td>
-					<td>00:50:00</td>
+					<th>Matricula</th>
+					<th>Nome</th>
+					<th>Entrada</th>
+					<th>Saída</th>
+					<th>Duração</th>
 				</tr>
-			</ui:repeat>
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				<ui:repeat var="a" value="#{resb.acessos}">
+					<tr>
+						<td>#{a.aluno.matricula}</td>
+						<td>#{a.aluno.nome}</td>
+						<td>
+							<h:outputText value="#{a.entrada}">
+								<f:convertDateTime type="localDateTime" pattern="dd/MM/yyyy HH:mm" />
+							</h:outputText>
+						</td>
+						<td>
+							<h:outputText value="#{a.saida}">
+								<f:convertDateTime type="localDateTime" pattern="dd/MM/yyyy HH:mm" />
+							</h:outputText>
+						</td>
+						<td>#{a.calculoDeDuracao}</td>
+					</tr>
+				</ui:repeat>
+			</tbody>
+		</table>
+	</h:panelGroup>
 </ui:define>
 </ui:composition>
 </html>
