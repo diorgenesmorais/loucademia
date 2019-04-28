@@ -8,6 +8,11 @@
 	lang="pt-BR">
 
 <ui:composition template="layout.xhtml">
+	<!-- resb = relatorioEntradaSaidaBean -->
+	<f:metadata>
+		<f:viewParam name="matricula" value="#{resb.matricula}" />
+		<f:viewAction action="#{resb.carregarRelatorio}" />
+	</f:metadata>
 	<ui:define name="conteudo">
 	<h1>Relatório de entradas e saídas</h1>
 	<h:panelGroup rendered="#{!facesContext.messageList.isEmpty()}">
@@ -16,7 +21,6 @@
 		</div>
 	</h:panelGroup>
 	<form jsf:id="form">
-		<!-- resb = relatorioEntradaSaidaBean -->
 		<fieldset>
 			<legend>Parâmetros de entradas e saídas</legend>
 			<label for="id">Matricula</label><br />
@@ -33,6 +37,7 @@
 		</fieldset>
 		<br />
 		<button type="submit" jsf:action="#{resb.gerarRelatorio}" >Gerar relatório</button>
+		<br />
 	</form>
 	<h:panelGroup rendered="#{not empty resb.acessos}">
 		<table>

@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.dms.loucademia.application.service.AcessoService;
+import com.dms.loucademia.application.util.StringUtils;
 import com.dms.loucademia.application.util.ValidationException;
 import com.dms.loucademia.domain.acesso.Acesso;
 
@@ -65,5 +66,11 @@ public class RelatorioEntradaSaidaBean implements Serializable {
 			facesContext.addMessage(null, new FacesMessage(e.getMessage()));
 		}
 		return null;
+	}
+	
+	public void carregarRelatorio() {
+		if(!StringUtils.isEmpty(this.matricula)) {
+			gerarRelatorio();
+		}
 	}
 }

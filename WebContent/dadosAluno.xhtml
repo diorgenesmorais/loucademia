@@ -113,8 +113,8 @@
 				</input>
 			</fieldset>
 			<br />
-			<button type="submit" jsf:action="#{alunoBean.gravar}">Gravar</button>
-			<button type="button">Relatórios de acessos</button>
+			<button type="submit" jsf:action="#{alunoBean.gravar}">Gravar</button>&#160;
+			<button type="button" jsf:outcome="relatoriosDeEntradaSaida?matricula=#{alunoBean.aluno.matricula}" >Relatório de entrada e saída</button>
 		</form>
 	</ui:define>
 </ui:composition>
