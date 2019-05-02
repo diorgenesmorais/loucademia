@@ -12,7 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.dms.loucademia.application.util.Validation;
 import com.dms.loucademia.domain.aluno.Aluno;
 
 @Entity
@@ -91,22 +90,31 @@ public class Acesso {
 		return true;
 	}
 
+	/**
+	 * Confirmar se a entrada e a saída já estão preenchidas
+	 * 
+	 * @return {@code true} se sim.
+	 */
 	public boolean isEntradaSaidaPreenchidas() {
 		return (this.entrada != null && this.saida != null);
 	}
 
+	/**
+	 * Registra o tempo (data e hora) se é uma entrada ou saída.
+	 * 
+	 * @return o {@code TipoAcesso} registrado.
+	 */
 	public TipoAcesso registrarAcesso() {
-		TipoAcesso tipoAcesso = null;
+		// suponhe-se que seja uma nova entrada
+		TipoAcesso tipoAcesso = TipoAcesso.ENTRADA;
 
 		if (this.entrada == null) {
 			this.entrada = LocalDateTime.now();
-			tipoAcesso = TipoAcesso.ENTRADA;
 		} else if (this.saida == null) {
 			this.saida = LocalDateTime.now();
 			tipoAcesso = TipoAcesso.SAIDA;
 		}
 
-		Validation.assertNotEmpty(tipoAcesso);
 		return tipoAcesso;
 	}
 
