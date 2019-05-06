@@ -8,6 +8,9 @@
 	lang="pt-BR">
 
 <ui:composition template="layout.xhtml">
+	<f:metadata>
+		<f:viewAction action="#{relatorioSituacoesBean.check}" />
+	</f:metadata>
 	<ui:define name="conteudo">
 	<h1>Relatório de situações</h1>
 		<h:panelGroup rendered="#{!facesContext.messageList.isEmpty()}">
