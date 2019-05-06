@@ -13,13 +13,8 @@
 		<f:viewParam name="matricula" value="#{resb.matricula}" />
 		<f:viewAction action="#{resb.carregarRelatorio}" />
 	</f:metadata>
+	<ui:param name="title" value="Relatório de entradas e saídas" />
 	<ui:define name="conteudo">
-	<h1>Relatório de entradas e saídas</h1>
-	<h:panelGroup rendered="#{!facesContext.messageList.isEmpty()}">
-		<div id="infoMessage">
-			<h:messages />
-		</div>
-	</h:panelGroup>
 	<form jsf:id="form">
 		<fieldset>
 			<legend>Parâmetros de entradas e saídas</legend>

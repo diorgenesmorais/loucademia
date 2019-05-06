@@ -8,14 +8,8 @@
 	lang="pt-BR">
 
 <ui:composition template="layout.xhtml">
+	<ui:param name="title" value="Controle de acesso" />
 	<ui:define name="conteudo">
-		<h1>Controle de acesso</h1>
-		<h:panelGroup rendered="#{!facesContext.messageList.isEmpty()}">
-			<div id="infoMessage">
-				<h:messages />
-			</div>
-		</h:panelGroup>
-		<br />
 		<form jsf:id="form">
 			<fieldset>
 				<legend>Parâmetros de acesso</legend>

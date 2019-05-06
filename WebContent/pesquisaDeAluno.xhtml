@@ -11,14 +11,8 @@
 	<f:metadata>
 		<f:viewAction action="#{pesquisaAlunoBean.check}" />
 	</f:metadata>
+	<ui:param name="title" value="Pesquisa de aluno" />
 	<ui:define name="conteudo">
-	<h1>Pesquisa de aluno</h1>
-	<h:panelGroup rendered="#{!facesContext.messageList.isEmpty()}">
-		<div id="infoMessage">
-			<h:messages />
-		</div>
-	</h:panelGroup>
-	
 	<form action="" jsf:id="form">
 		<fieldset>
 			<legend>Parâmetros de pesquisa</legend>
