@@ -19,14 +19,14 @@
 		<fieldset>
 			<legend>Parâmetros de entradas e saídas</legend>
 			<label for="id">Matricula</label><br />
-			<input type="text" jsf:value="#{resb.matricula}" id="id" /><br />
+			<input type="text" jsf:value="#{resb.matricula}" id="id" jsf:label="Matricula" /><br />
 			<label for="dataInicial">Data inicial</label><br />
-			<input type="date" jsf:value="#{resb.dataInicial}" id="dataInicial">
+			<input type="date" jsf:value="#{resb.dataInicial}" id="dataInicial" jsf:label="Data inicial">
 				<f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
 			</input>
 			<br />
 			<label for="dataFinal">Data final</label><br />
-			<input type="date" jsf:value="#{resb.dataFinal}" id="dataFinal" >
+			<input type="date" jsf:value="#{resb.dataFinal}" id="dataFinal" jsf:label="Data final" >
 				<f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />
 			</input>
 		</fieldset>

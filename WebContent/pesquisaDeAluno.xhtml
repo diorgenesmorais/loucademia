@@ -17,13 +17,13 @@
 		<fieldset>
 			<legend>Parâmetros de pesquisa</legend>
 			<label for="id">Matricula</label><br />
-			<input type="text" name="id" id="id" jsf:value="#{pesquisaAlunoBean.matricula}" /><br />
+			<input type="text" name="id" id="id" jsf:value="#{pesquisaAlunoBean.matricula}" jsf:label="Matricula" /><br />
 			<label for="nome">Nome</label><br />
-			<input type="text" name="nome" id="nome" jsf:value="#{pesquisaAlunoBean.nome}" /><br />
+			<input type="text" name="nome" id="nome" jsf:value="#{pesquisaAlunoBean.nome}" jsf:label="Nome" /><br />
 			<label for="rg">RG</label><br />
-			<input type="text" name="rg" id="rg" jsf:value="#{pesquisaAlunoBean.rg}" /><br />
+			<input type="text" name="rg" id="rg" jsf:value="#{pesquisaAlunoBean.rg}" jsf:label="RG" /><br />
 			<label for="telefoneNumero">Telefone</label><br />
-			<input type="tel" name="telefoneNumero" id="telefoneNumero" jsf:value="#{pesquisaAlunoBean.telefone}" />
+			<input type="tel" name="telefoneNumero" id="telefoneNumero" jsf:value="#{pesquisaAlunoBean.telefone}" jsf:label="Telefone" />
 		</fieldset>
 		<br />
 		<button type="submit" jsf:action="#{pesquisaAlunoBean.pesquisar}">Pesquisar</button>
